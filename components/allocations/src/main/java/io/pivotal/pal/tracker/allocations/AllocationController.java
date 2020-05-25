@@ -36,7 +36,7 @@ public class AllocationController {
             return new ResponseEntity<>(present(record), HttpStatus.CREATED);
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
     }
 
     @GetMapping
