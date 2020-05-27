@@ -4,6 +4,7 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestOperations;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -22,7 +23,9 @@ public class ProjectClient {
     @CircuitBreaker(name = "project", fallbackMethod = "getProjectFromCache")
     public ProjectInfo getProject(long projectId) {
         ProjectInfo project = restOperations.getForObject(endpoint + "/projects/" + projectId, ProjectInfo.class);
+
         projectsCache.put(projectId, project);
+
         return project;
     }
 

@@ -29,8 +29,7 @@ public class AllocationController {
 
     @PostMapping
     public ResponseEntity<AllocationInfo> create(@RequestBody AllocationForm form) {
-    	System.out.println("*******" + " in post mapping ");
-    	System.out.println("*******" + " in post form with projectid = " + form.projectId);
+
         if (projectIsActive(form.projectId)) {
             AllocationRecord record = gateway.create(formToFields(form));
             return new ResponseEntity<>(present(record), HttpStatus.CREATED);
